@@ -129,8 +129,8 @@ This project demonstrates the design and implementation of a secure enterprise n
 
 👨‍💻 Author
 
-Ananthu K Santhosh
-Bachelor of Computer Applications (BCA)
+Ananthu K Santhosh\n
+Bachelor of Computer Applications (BCA)\n
 Marian College Kuttikkanam
 
 ---
