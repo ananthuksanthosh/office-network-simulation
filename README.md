@@ -1,29 +1,55 @@
 🏢 Enterprise Office Network Simulation (GNS3)
 
-A practical enterprise network simulation built using GNS3 and Cisco 7200 routers. This project demonstrates real-world networking concepts such as routing, NAT, DHCP, and firewall implementation using ACLs.
+A hands-on enterprise network simulation built using GNS3 and Cisco 7200 routers, designed to replicate a real-world office network environment.
+This project demonstrates key networking concepts including routing, NAT, DHCP, network segmentation, and firewall implementation using ACLs.
 
 ---
 
 📌 Project Overview
 
-This project simulates a small enterprise network with multiple departments and a customer network. It focuses on secure communication, controlled access, and internet connectivity.
+This project simulates a small enterprise infrastructure consisting of multiple internal departments and an external customer network.
+The primary goal is to ensure:
+
+- Secure communication between internal networks
+- Controlled access to sensitive systems
+- Reliable internet connectivity using NAT
+- Efficient IP management using DHCP
+
+The design follows a simplified core-edge architecture, commonly used in real enterprise networks.
 
 ---
 
 🏗️ Network Architecture
 
-- Core Router (CORE-RTR) – Internal routing and firewall enforcement
-- Edge Router (EDGE-RTR) – Internet gateway with NAT configuration
-- Core Switch (CORE-SW) – Connects internal office devices
-- Office Network – HR, IT, Finance departments
-- Admin Network – Secure subnet with restricted access
-- Customer Network – DHCP-enabled network for external users
+The network is structured into different layers and functional components:
+
+- Core Router (CORE-RTR)
+  Handles internal routing between subnets and enforces firewall policies using ACLs
+
+- Edge Router (EDGE-RTR)
+  Acts as the gateway to external networks and provides internet access using NAT
+
+- Core Switch (CORE-SW)
+  Connects all internal office devices and enables LAN communication
+
+- Office Network
+  Includes departmental systems such as:
+  
+  - HR
+  - IT
+  - Finance
+
+- Admin Network
+  A highly secure subnet with restricted inbound access
+
+- Customer Network
+  A dynamic network where devices receive IP addresses using DHCP
 
 ---
 
 🌐 IP Addressing Scheme
 
-## 🌐 IP Addressing Scheme
+The network is divided into logical subnets for scalability and security.
 
 | Network            | Subnet              | Description                         |
 |------------------|--------------------|-------------------------------------|
@@ -31,22 +57,36 @@ This project simulates a small enterprise network with multiple departments and 
 | Office Network   | 192.168.10.0/24    | HR, IT, Finance departments         |
 | Admin Network    | 192.168.20.0/24    | Secure admin systems                |
 | Customer Network | 192.168.50.0/24    | DHCP-based external users           |
+
 🚪 Default Gateways
 
-- Office Network: 192.168.10.1
-- Admin Network: 192.168.20.1
-- Customer Network: 192.168.50.1
+- Office Network → 192.168.10.1
+- Admin Network → 192.168.20.1
+- Customer Network → 192.168.50.1
 
 ---
 
 ⚙️ Features Implemented
 
-- Static IP addressing for office devices
-- DHCP configuration for customer network
-- NAT for internet access
-- Static routing between routers
-- Firewall implementation using extended ACL
-- Network segmentation for security
+This project includes several core networking features:
+
+- Static IP Addressing
+  Used for office and admin devices to ensure consistent connectivity
+
+- DHCP Configuration
+  Automatically assigns IP addresses to customer devices
+
+- NAT (Network Address Translation)
+  Enables internal devices to access external networks (Internet simulation)
+
+- Static Routing
+  Configured between routers for inter-network communication
+
+- Firewall using Extended ACL
+  Controls traffic flow and enforces security policies
+
+- Network Segmentation
+  Separates networks to improve performance and security
 
 ---
 
@@ -54,27 +94,34 @@ This project simulates a small enterprise network with multiple departments and 
 
 Firewall functionality is implemented using extended Access Control Lists (ACLs) on the Core Router (Cisco 7200).
 
+🔒 Security Rules
+
 - Admin network has full access to all networks
 - Office and customer networks are restricted from accessing admin network
-- Unauthorized traffic is blocked using ACL rules
-- ACL applied on router interfaces to control traffic flow
+- Unauthorized traffic is blocked at the router level
+- ACLs are applied on interfaces to control inbound traffic
+
+This ensures that sensitive systems remain protected while maintaining necessary communication.
 
 ---
 
 🧪 Verification & Testing
 
+The network was tested to validate connectivity, security, and functionality.
+
 ✅ Internal Communication
 
-Office devices communicate successfully
+All office devices successfully communicate with each other
 Example: HR → IT → FIN
 
 Screenshot: "network-working.png"
 
 ---
 
-🚫 Firewall Block
+🚫 Firewall Block (Unauthorized Access)
 
-Unauthorized access to admin is blocked
+Attempts to access the admin network from other networks are blocked
+Displays: “Communication administratively prohibited”
 
 Screenshots:
 
@@ -83,9 +130,9 @@ Screenshots:
 
 ---
 
-✅ Firewall Allow
+✅ Firewall Allow (Admin Access)
 
-Admin can access all networks
+Admin network can access all other networks without restriction
 
 Screenshot: "firewall-allow-test.png"
 
@@ -93,7 +140,7 @@ Screenshot: "firewall-allow-test.png"
 
 🌍 Internet Access (NAT)
 
-Devices can access external network (8.8.8.8)
+Internal devices can access external IP (e.g., 8.8.8.8) using NAT
 
 Screenshot: "internet-access-NAT.png"
 
@@ -101,7 +148,7 @@ Screenshot: "internet-access-NAT.png"
 
 📡 DHCP Verification
 
-Customer devices receive IP automatically
+Customer devices receive IP addresses dynamically
 
 Screenshot: "dhcp-auto-assignment.png"
 
@@ -110,58 +157,63 @@ Screenshot: "dhcp-auto-assignment.png"
 📁 Project Structure
 
 enterprise-office-network-gns3/
-├── configs/
-├── project-file/
-├── screenshots/
+│
+├── configs/         # Router configuration files
+├── project-file/    # GNS3 project download link
+├── screenshots/     # Output verification images
 └── README.md
 
 ---
 
 🔗 GNS3 Project File
 
-👉 "Download Full GNS3 Project" (https://drive.google.com/file/d/1mlkhLAarYJyHyTNzjELdpsSS7sZZXd11/view?usp=sharing)
+Due to size limitations, the project is hosted externally.
+
+👉 Download here:
+https://drive.google.com/file/d/1mlkhLAarYJyHyTNzjELdpsSS7sZZXd11/view?usp=sharing
 
 ---
 
-🚀 How to Run
+🚀 How to Run the Project
 
 1. Install GNS3 and VirtualBox
 2. Import Cisco 7200 router image
 3. Download the project file
-4. Open project in GNS3
+4. Open it in GNS3
 5. Start all devices
-6. Test connectivity using ping commands
+6. Verify connectivity using ping commands
 
 ---
 
 🛠️ Technologies Used
 
-- GNS3 (Network Simulation)
+- GNS3 (Network Simulation Tool)
 - Cisco 7200 Router (Core, Edge, Firewall roles)
-- VPCS (Virtual PCs)
+- VPCS (Virtual PC Simulator)
 - VirtualBox
 
 ---
 
 🎯 Learning Outcomes
 
-- Enterprise network design basics
-- Routing and NAT implementation
-- Firewall using ACL
-- DHCP configuration and troubleshooting
-- Network segmentation and security
+Through this project, the following skills were developed:
+
+- Enterprise network design fundamentals
+- Routing and NAT configuration
+- Firewall implementation using ACL
+- DHCP setup and troubleshooting
+- Network segmentation and security practices
 
 ---
 
 👨‍💻 Author
 
 Ananthu K Santhosh
-BCA Student | Interested in Networking & Cybersecurity
+BCA Student | Aspiring Full Stack Developer & Cybersecurity Enthusiast
 
 ---
 
 ⭐ Conclusion
 
-This project demonstrates a secure enterprise network with controlled access and internet connectivity using real-world networking concepts. It reflects practical hands-on experience with networking tools and configurations.
-
----
+This project demonstrates a practical implementation of an enterprise network with secure communication, controlled access, and internet connectivity.
+It reflects hands-on experience with real-world networking concepts using GNS3 and Cisco devices.
