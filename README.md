@@ -75,7 +75,6 @@ The following diagram represents the overall network structure, including core, 
 
 ---
 
-
 ⚙️ Features Implemented
 
 This project includes several core networking features:
@@ -97,6 +96,25 @@ This project includes several core networking features:
 
 - Network Segmentation
   Separates networks to improve performance and security
+
+---
+
+## 🔄 Data Flow
+
+The communication flow in the network is as follows:
+
+### Office Users
+PC → Core Switch → Core Router → Edge Router → Internet  
+
+### Customer Users
+Device → Switch → Edge Router → Internet  
+
+### Admin Network
+Admin → Core Router → All Networks  
+
+### Firewall Behavior
+- Office/Customer → Admin ❌ Blocked  
+- Admin → All Networks ✅ Allowed
 
 ---
 
