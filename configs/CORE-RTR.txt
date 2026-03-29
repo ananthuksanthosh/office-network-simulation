@@ -1,0 +1,19 @@
+hostname CORE-RTR
+
+! Interface to EDGE
+interface FastEthernet0/0
+ ip address 10.0.0.2 255.255.255.0
+ no shutdown
+
+! Office Network (HR, IT, FIN)
+interface FastEthernet1/0
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+! Admin Network
+interface FastEthernet1/1
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown
+
+! Default Route to Internet
+ip route 0.0.0.0 0.0.0.0 10.0.0.1
